@@ -1,37 +1,55 @@
-// // variable for generating rounds
+let computerPlay = () => {
+  let options = ["rock", "paper", "scissor"];
+  return options[Math.floor(Math.random() * 3)];
+};
 
+let playRound = (playerSelection, computerSelection) => {
+  let result;
+  if (playerSelection == computerSelection) {
+    return (result = `That's a Draw! you both chose ${playerSelection}`);
+  } else if (
+    (playerSelection == "rock" && computerSelection == "scissor") ||
+    (playerSelection == "paper" && computerSelection == "rock") ||
+    (playerSelection == "scissor" && computerSelection == "paper")
+  ) {
+    return (result = `You Won! ${playerSelection} beats ${computerSelection}`);
+  } else if (
+    (playerSelection == "scissor" && computerSelection == "rock") ||
+    (playerSelection == "rock" && computerSelection == "paper") ||
+    (playerSelection == "paper" && computerSelection == "scissor")
+  ) {
+    return (result = `You Lose! ${computerSelection} beats ${playerSelection}`);
+  } else {
+    return (result = alert("Enter a valid input."));
+  }
+};
 
-// function for generating couputer side input
-
-let computerPlays = () => {
-    let option = ["rock", "paper" , "scissor"];
-    return option[Math.floor(Math.random()*3)];
-}
-
-// function to generate player side input
-
-let playerSelection = () => {
-    userInput = prompt("Enter one of these rock,paper or scissor"," ");
-    return userInput;
-}
-
-// assigned these functions into vairables
-
-let computerPlayed = computerPlays();
-let playerPlays = playerSelection();
-
-// created a function which generates a single round game
-
-let playRound = (playerPlays, computerPlayed) => {
-    if ( playerPlays == computerPlayed ){
-        return `That's a Draw! you both choose ${computerPlayed}`;
-    } else if ((playerPlays == "rock" && computerPlayed == "scissor") || (playerPlays == "paper" && computerPlayed == "rock") || (playerPlays == "scissor" && computerPlayed == "paper")) {
-        return `You Won! ${playerPlays} beats ${computerPlayed}`;
-    } else if ((playerPlays == "scissor" && computerPlayed == "rock") || (playerPlays == "rock" && computerPlayed == "paper") || (playerPlays == "paper" && computerPlayed == "scissor")) {
-        return `You lose! ${computerPlayed} beats ${playerPlays}`;
+function game(fiveRound) {
+  let pcounter = 0;
+  let ccounter = 0;
+  for (let i = 1; i < 5; i++) {
+    const playerSelection = prompt("choose one rock, paper or scissor?", "");
+    const computerSelection = computerPlay();
+    let result = fiveRound(playerSelection, computerSelection);
+    console.log(result);
+    if (result.includes("Won")) {
+      pcounter++;
+    } else if (result.includes("Lose")) {
+      ccounter++;
     } else {
-        return alert("Enter a valid input.")
+      pcounter;
+      ccounter;
     }
+  }
+  if (pcounter > ccounter) {
+    console.log(`You Won This Game With Score: ${pcounter} - ${ccounter}`);
+  } else if (pcounter < ccounter) {
+    console.log(`Computer Won This Game With Score: ${pcounter} - ${ccounter}`);
+  } else {
+    console.log(
+      `It's a Tie, Both Scored ${pcounter} - ${ccounter}, Restart The Game `
+    );
+  }
 }
 
-game(playRound(playerPlays, computerPlayed));
+game(playRound);
