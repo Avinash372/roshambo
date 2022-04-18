@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roshambo</title>
-    <link rel="stylesheet" href="../roshambo/css/style.css">
-</head>
-<body>
-    
-    <h3>Open Console to see the Result.</h3>
-
-    <script src="../roshambo/js/script.js"></script>
-</body>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/b8ea3dcf79.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="title"><h1>Rock | Paper | Scissor</h1></div>
+    <div class="container">
+      <div class="scoreboard">
+        <div class="player">
+          <h3>Player</h3>
+          <h2 class="pcounter">0</h2>
+        </div>
+        <div class="computer">
+          <h3>Computer</h3>
+          <h2 class="ccounter">0</h2>
+        </div>
+        <div class="restart">
+          <button title="Restart button" id="restart">
+            <span class="icon"><i class="fa-solid fa-rotate restart"></i></span>
+          </button>
+        </div>
+      </div>
+      <div class="playground">
+        <p class="message"></p>
+        <h3 class="result"></h3>
+      </div>
+      <div class="buttons">
+        <button title="Rock" class="btn rock">
+          <span class="icon"
+            ><i class="fa-solid fa-hand-back-fist rock"></i
+          ></span>
+        </button>
+        <button title="Paper" class="btn paper">
+          <span class="icon"><i class="fa-solid fa-hand paper"></i></span>
+        </button>
+        <button title="Scissor" class="btn scissor">
+          <span class="icon"
+            ><i class="fa-solid fa-hand-peace scissor"></i
+          ></span>
+        </button>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
 </html>
