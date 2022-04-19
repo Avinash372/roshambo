@@ -4,44 +4,63 @@ let computerPlay = () => {
   return options[Math.floor(Math.random() * 3)];
 };
 
-function app() {
+for (let i = 0; i < buttons.length; i++) {
+  // counter variables
   let pcounter = document.querySelector(".pcounter");
   let ccounter = document.querySelector(".ccounter");
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", (e) => {
-      const computer = computerPlay();
-      const player = e.target.classList[2];
-      if (player == computer) {
-        document.querySelector(".message").textContent = "Draw!";
-        document.querySelector(
-          ".result"
-        ).textContent = `You both chose ${computer}`;
-      } else if (
-        (player == "rock" && computer == "scissor") ||
-        (player == "paper" && computer == "rock") ||
-        (player == "scissor" && computer == "paper")
-      ) {
-        document.querySelector(".message").textContent = "You Won!";
-        document.querySelector(
-          ".result"
-        ).textContent = `${player} beats ${computer}`;
-        pcounter.textContent++;
-      } else if (
-        (player == "scissor" && computer == "rock") ||
-        (player == "rock" && computer == "paper") ||
-        (player == "paper" && computer == "scissor")
-      ) {
-        document.querySelector(".message").textContent = "You lose!";
-        document.querySelector(
-          ".result"
-        ).textContent = `${computer} beats ${player}`;
-        ccounter.textContent++;
-      }
-      console.log(player, computer);
-    });
-  }
+  // restart button
+  const resetBtn = document.querySelector("#restart");
+  // button options
+  buttons[i].addEventListener("click", (e) => {
+    const computer = computerPlay();
+    const player = e.target.classList[2];
+    if (player == computer) {
+      document.querySelector(".message").textContent = "Draw!";
+      document.querySelector(
+        ".result"
+      ).textContent = `You both chose ${computer}`;
+    } else if (
+      (player == "rock" && computer == "scissor") ||
+      (player == "paper" && computer == "rock") ||
+      (player == "scissor" && computer == "paper")
+    ) {
+      document.querySelector(".message").textContent = "You Won!";
+      document.querySelector(
+        ".result"
+      ).textContent = `${player} beats ${computer}`;
+      pcounter.textContent++;
+    } else if (
+      (player == "scissor" && computer == "rock") ||
+      (player == "rock" && computer == "paper") ||
+      (player == "paper" && computer == "scissor")
+    ) {
+      document.querySelector(".message").textContent = "You lose!";
+      document.querySelector(
+        ".result"
+      ).textContent = `${computer} beats ${player}`;
+      ccounter.textContent++;
+    }
+    // winning cases
+    if (pcounter.textContent == 3) {
+      document.querySelector(".message").textContent = "You Won This Game!";
+      document.querySelector(
+        ".result"
+      ).textContent = `With Score: ${pcounter.textContent} - ${ccounter.textContent}, Click Restart To Play Again!`;
+    } else if (ccounter.textContent == 3) {
+      document.querySelector(".message").textContent = "You Lost This Game!";
+      document.querySelector(
+        ".result"
+      ).textContent = `With Score: ${pcounter.textContent} - ${ccounter.textContent}, Click Restart To Play Again!`;
+    }
+  });
+  // restart Logic
+  resetBtn.addEventListener("click", () => {
+    pcounter.textContent = "0";
+    ccounter.textContent = "0";
+    document.querySelector(".message").textContent = "";
+    document.querySelector(".result").textContent = "";
+  });
 }
-app();
 
 // else if (
 //     (playerSelection == "rock" && computerSelection == "scissor") ||
